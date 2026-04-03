@@ -1,70 +1,83 @@
-# Kailash COC Claude (Python)  
+# CO Workspace — boss-bidding
+
 **Project**: boss-bidding  
-**Repository**: [`terrene-foundation/boss-bidding`](https://github.com/terrene-foundation/boss-bidding)
+**Repository**: [`almanies2025/boss-bidding`](https://github.com/almanies2025/boss-bidding)
 
 ---
 
 ## ✅ Workspace Connection Active
 
-**You are now connected to the boss-bidding workspace.**
+**You are now connected to the boss-bidding CO workspace.**
 
 | Component | Location |
 |-----------|----------|
 | **Agents** | `.claude/agents/` — 30+ specialized domain experts |
 | **Skills** | `.claude/skills/` — 28 specialized capabilities |
-| **Rules** | `.claude/rules/` — 23 governance & security rules |
-| **Commands** | `.claude/commands/` — 20+ workspace commands |
-| **Hooks** | `scripts/hooks/` — 9 enforcement hooks |
+| **Rules** | `.claude/rules/` — governance & behavioral rules |
+| **Commands** | `.claude/commands/` — workspace phase commands |
+| **Hooks** | `scripts/hooks/` — enforcement hooks |
 
 **Quick Start Commands**: `/analyze` `/todos` `/implement` `/redteam` `/codify` `/ws` `/wrapup`
 
 ---
 
-This repository is the **COC (Cognitive Orchestration for Codegen) setup** for building with the Kailash SDK — providing agents, skills, rules, and hooks for Kailash SDK development. All projects using this setup inherit these capabilities through the `.claude/` directory.
+This repository is a **CO (Cognitive Orchestration) workspace** — providing agents, skills, rules, and hooks for structured human-AI collaboration across any domain. CO is the domain-agnostic base methodology. Domain-specific workspaces (investment analysis, strategy, research, product) live under `workspaces/`.
+
+## The CO Five-Layer Architecture
+
+```text
+Layer 5: LEARNING      — Observe, capture, evolve knowledge across sessions (journal, wrapup)
+Layer 4: INSTRUCTIONS  — Structured workflows with approval gates (/analyze → /todos → /implement → /redteam → /codify)
+Layer 3: GUARDRAILS    — Deterministic enforcement outside AI context (hooks, rules)
+Layer 2: CONTEXT       — Workspace institutional knowledge (briefs, analysis, plans, user flows)
+Layer 1: INTENT        — Domain-specialized agents (analysts, specialists, reviewers)
+```
 
 ## Absolute Directives
 
 These override ALL other instructions. They govern behavior before any rule file is consulted.
 
-### 0. Foundation Independence — No Commercial Coupling
+### 1. Human-on-the-Loop
 
-Kailash Python SDK is a **Terrene Foundation project**. It is fully independent. There is NO relationship between Kailash Python SDK and any commercial product, proprietary codebase, or commercial entity. Do not reference, compare with, or design against any proprietary product. Do not use language like "open-source version of X" or "Python port of Y." Kailash Python SDK IS the product — not a derivative of anything. See `rules/independence.md` for full policy.
+The human defines the operating envelope (brief) and approves structural gates (/todos approval). AI executes autonomously within those envelopes. The human observes outcomes — they are not in the execution loop.
 
-### 1. Framework-First
+**Structural gates** (human approval required): plan approval (/todos), release/publish authorization  
+**Execution gates** (autonomous convergence): analysis quality, implementation correctness, validation rigor
 
-Never write code from scratch before checking whether the Kailash frameworks already handle it.
+### 2. Institutional Knowledge First
 
-- Instead of direct SQL/SQLAlchemy/Django ORM → check with **dataflow-specialist**
-- Instead of FastAPI/custom API gateway → check with **nexus-specialist**
-- Instead of custom MCP server/client → check with **mcp-specialist**
-- Instead of custom agentic platform → check with **kaizen-specialist**
-- Instead of custom governance/access control → check with **pact-specialist**
+Before executing any task, check whether this workspace's institutional knowledge already addresses it:
 
-### 2. .env Is the Single Source of Truth
+- Review the workspace `journal/` for relevant prior decisions and discoveries
+- Check `01-analysis/` for prior research before starting new research
+- Check `02-plans/` before planning work already planned
+- Use specialist agents from `.claude/agents/` — don't reinvent what agents already know
 
-All API keys and model names MUST come from `.env`. Never hardcode model strings like `"gpt-4"` or `"claude-3-opus"`. Root `conftest.py` auto-loads `.env` for pytest.
+### 3. Complete Work, Don't Defer
 
-See `rules/env-models.md` for full details.
-
-### 3. Implement, Don't Document
-
-When you discover a missing feature, endpoint, or record — **implement or create it**. Do not note it as a gap and move on. The only acceptable skip is explicit user instruction.
-
-See `rules/e2e-god-mode.md` and `rules/no-stubs.md` for enforcement details.
+When you discover a gap, missing analysis, or incomplete deliverable — **fill it**. Do not note it as a gap and move on. The only acceptable skip is explicit user instruction.
 
 ### 4. Zero Tolerance
 
-Pre-existing failures MUST be fixed, not reported. Stubs are BLOCKED. Naive fallbacks are BLOCKED. SDK bugs get GitHub issues, not workarounds. See `rules/zero-tolerance.md`.
+Pre-existing failures must be fixed, not reported. Gaps in plans must be addressed, not catalogued. See `rules/zero-tolerance.md`.
 
 ### 5. Recommended Reviews
 
-- **Code review** (intermediate-reviewer) after file changes — RECOMMENDED — see `rules/agents.md` Rule 1
-- **Security review** (security-reviewer) before commits — strongly recommended — see `rules/agents.md` Rule 2
-- **Real infrastructure recommended** in Tier 2/3 tests — see `rules/testing.md`
+- **Analysis review** (deep-analyst or intermediate-reviewer) after significant work — RECOMMENDED
+- **Security review** (security-reviewer) before commits — strongly recommended
+- **Value audit** (value-auditor) for deliverables that will be presented to external stakeholders
 
 ### 6. LLM-First Agent Reasoning
 
-When building AI agents: **the LLM does ALL reasoning. Tools are dumb data endpoints.** No if-else routing, no keyword matching, no regex classification in agent decision paths. The LLM IS the router, classifier, extractor, and evaluator. Deterministic logic is BLOCKED unless the user explicitly opts in. See `rules/agent-reasoning.md` for the full rule and detection patterns.
+When building or using AI agents: **the LLM does ALL reasoning. Tools are dumb data endpoints.** No if-else routing, no keyword matching, no hardcoded classification in agent decision paths. The LLM IS the router, classifier, extractor, and evaluator. See `rules/agent-reasoning.md`.
+
+### 7. Three Failure Modes to Guard Against
+
+Per CO Principle 3 — every session, every deliverable, guard against:
+
+- **Amnesia** — Starting fresh without reading the journal and prior analysis
+- **Convention Drift** — Letting standards slip across sessions
+- **Safety Blindness** — Missing risks because the analysis is going well
 
 ## Workspace Commands
 
@@ -75,79 +88,77 @@ Phase commands replace the manual copy-paste workflow. Each loads the correspond
 | `/analyze`   | 01    | Load analysis phase for current workspace                  |
 | `/todos`     | 02    | Load todos phase; stops for human approval                 |
 | `/implement` | 03    | Load implementation phase; repeat until todos done         |
-| `/redteam`   | 04    | Load validation phase; red team with MCP tools             |
+| `/redteam`   | 04    | Load validation phase; red team with specialist agents     |
 | `/codify`    | 05    | Load codification phase; create agents & skills            |
-| `/release`   | —     | SDK release: PyPI publishing, docs deploy, CI (standalone) |
 | `/ws`        | —     | Read-only workspace status dashboard                       |
 | `/wrapup`    | —     | Write session notes before ending                          |
 | `/journal`   | —     | View, create, or search project journal entries            |
 
-**Workspace detection**: Hooks automatically detect the active workspace and inject context. `session-start.js` shows workspace status on session start (human-facing). `user-prompt-rules-reminder.js` injects a 1-line `[WORKSPACE]` summary into Claude's context every turn (survives context compression).
+**Workspace detection**: Hooks automatically detect the active workspace and inject context. `session-start.js` shows workspace status on session start. `user-prompt-rules-reminder.js` injects a 1-line `[WORKSPACE]` summary into Claude's context every turn (survives context compression).
 
 **Session continuity**: Run `/wrapup` before ending a session to write `.session-notes`. The next session's startup reads these notes and shows workspace progress automatically.
 
+## Workspace Structure
+
+Each workspace under `workspaces/<project>/` follows this structure:
+
+```text
+workspaces/<project>/
+├── briefs/          ← Human input surface (the brief defines the operating envelope)
+├── 01-analysis/     ← Research, findings, models, estimates
+├── 02-plans/        ← Synthesis plans, monitoring, due diligence gaps
+├── 03-user-flows/   ← Decision frameworks, scenario playbooks, user journeys
+├── 04-validate/     ← Red team findings, validation reports
+├── journal/         ← Knowledge trail (DECISION, DISCOVERY, TRADE-OFF, RISK, CONNECTION, GAP)
+├── todos/
+│   ├── active/      ← Current work
+│   └── completed/   ← Done
+└── .session-notes   ← Cross-session continuity (written by /wrapup)
+```
+
 ## Rules Index
 
-| Concern                               | Rule File                       | Scope                                                                 |
-| ------------------------------------- | ------------------------------- | --------------------------------------------------------------------- |
-| **Foundation independence**           | `rules/independence.md`         | **Global — overrides all**                                            |
-| **Autonomous execution model**        | `rules/autonomous-execution.md` | **Global — 10x multiplier, structural vs execution gates**            |
-| **LLM-first agent reasoning**         | `rules/agent-reasoning.md`      | **Global — all agent code, Kaizen, AI patterns**                      |
-| Agent orchestration & review recommendations | `rules/agents.md`          | Global                                                                |
-| SDK release & PyPI publishing         | `rules/deployment.md`           | `deploy/**`, `.github/workflows/**`, `pyproject.toml`, `CHANGELOG.md` |
-| E2E god-mode testing                  | `rules/e2e-god-mode.md`         | `tests/e2e/**`, `**/*e2e*`, `**/*playwright*`                         |
-| API keys & model names                | `rules/env-models.md`           | `**/*.py`, `**/*.ts`, `**/*.js`, `.env*`                              |
-| Git commits, branches, PRs            | `rules/git.md`                  | Global                                                                |
-| Branch protection & PR workflow       | `rules/branch-protection.md`    | Global                                                                |
-| Avoid stubs, TODOs, or placeholders in production | `rules/no-stubs.md`    | Global                                                                |
-| Kailash SDK execution patterns        | `rules/patterns.md`             | `**/*.py`, `**/*.ts`, `**/*.js`                                       |
-| Security (secrets, injection)         | `rules/security.md`             | Global                                                                |
-| 3-tier testing, real infrastructure recommended | `rules/testing.md`      | `tests/**`, `**/*test*`, `**/*spec*`, `conftest.py`                   |
-| Auto-generated workflow instincts     | `rules/learned-instincts.md`    | Global                                                                |
-| Infrastructure SQL safety             | `rules/infrastructure-sql.md`   | Database and infrastructure files                                     |
-| PACT governance security              | `rules/pact-governance.md`      | PACT governance files                                                 |
-| Journal knowledge trail               | `rules/journal.md`              | Global                                                                |
-| Error handling & logging              | `rules/error-handling.md`       | Global — all Python code                                              |
-| API versioning & compatibility        | `rules/api-versioning.md`       | Public SDK APIs, Nexus endpoints, DataFlow models                     |
-| Performance & resource constraints    | `rules/performance-constraints.md` | Critical paths, API handlers, workflow nodes                       |
-| Config management & secrets rotation  | `rules/configuration-management.md` | All environments, `.env*`, deployment config                    |
-| Concurrency & thread safety           | `rules/concurrency-safety.md`   | Threads, async/await, shared state                                    |
-| Dependency management                 | `rules/dependency-management.md` | `pyproject.toml`, `requirements*.txt`, `package.json`               |
-| Monitoring, alerting & observability  | `rules/observability.md`        | Production services, autonomous agents, background tasks              |
-| Data validation & sanitization        | `rules/data-validation.md`      | All system boundaries — API inputs, file uploads, LLM outputs         |
-| API documentation standards           | `rules/api-documentation.md`    | Public Python APIs, Nexus endpoints, `.env.example`                  |
-| CI/CD pipeline standards              | `rules/ci-cd-pipeline.md`       | `.github/workflows/**`, CI config, deployment scripts                 |
+| Concern | Rule File | Scope |
+| ------- | --------- | ----- |
+| **Autonomous execution model** | `rules/autonomous-execution.md` | **Global — 10x multiplier, structural vs execution gates** |
+| **LLM-first agent reasoning** | `rules/agent-reasoning.md` | **Global — all agent code and AI patterns** |
+| Agent orchestration & review recommendations | `rules/agents.md` | Global |
+| Communication style | `rules/communication.md` | Global — non-technical user interactions |
+| Git commits, branches, PRs | `rules/git.md` | Global |
+| Branch protection & PR workflow | `rules/branch-protection.md` | Global |
+| Security (secrets, data handling) | `rules/security.md` | Global |
+| Journal knowledge trail | `rules/journal.md` | Global |
+| Zero tolerance enforcement | `rules/zero-tolerance.md` | Global |
+| No stubs or deferred work | `rules/no-stubs.md` | Global |
 
-**Note**: Rules with path scoping are loaded only when editing matching files. Global rules load every session.
+**Note**: Rules load every session. Workspace-specific rules may be added to `workspaces/<project>/rules/` and are loaded only for that workspace.
 
 ## Agents
 
 ### Analysis & Planning
 
-- **deep-analyst** — Failure analysis, complexity assessment
-- **requirements-analyst** — Requirements breakdown, ADR creation
-- **sdk-navigator** — Find patterns before coding
-- **framework-advisor** — Choose Core SDK, DataFlow, Nexus, or Kaizen
+- **deep-analyst** — Failure analysis, complexity assessment, risk identification
+- **requirements-analyst** — Requirements breakdown, scope definition, ADR creation
+- **sdk-navigator** — Find existing patterns and knowledge before designing from scratch
+- **framework-advisor** — Choose the right approach when multiple paths exist
 
-### Framework Specialists (`agents/frameworks/`)
+### Domain Specialists
 
-- **dataflow-specialist** — Database operations, auto-generated nodes
-- **nexus-specialist** — Multi-channel platform (API/CLI/MCP)
-- **kaizen-specialist** — AI agents, signatures, multi-agent coordination
-- **mcp-specialist** — MCP server implementation
-- **infrastructure-specialist** — Progressive infrastructure (Level 0/1/2), dialect-portable SQL, task queues, idempotency
-- **pact-specialist** — Organizational governance (D/T/R, envelopes, clearance, governed agents)
+- **dataflow-specialist** — Data modeling, database design, bulk data operations
+- **nexus-specialist** — API design, multi-channel deployment
+- **kaizen-specialist** — AI agent design, multi-agent coordination
+- **mcp-specialist** — MCP server/tool implementation
+- **infrastructure-specialist** — Infrastructure design, progressive deployment
+- **pact-specialist** — Organizational governance, access control, accountability
 
-### Core Implementation
+### Review & QA
 
-- **pattern-expert** — Workflow patterns, nodes, parameters
-- **tdd-implementer** — Test-first development
-- **intermediate-reviewer** — Code review after changes (RECOMMENDED)
-- **gold-standards-validator** — Compliance checking
-- **build-fix** — Fix build/type errors with minimal changes
+- **intermediate-reviewer** — Work review after significant changes (RECOMMENDED)
+- **gold-standards-validator** — Compliance and standards checking
 - **security-reviewer** — Security audit before commits (RECOMMENDED)
+- **value-auditor** — Deliverable QA from external stakeholder perspective
 
-### Frontend & Design (`agents/frontend/`)
+### Frontend & Design
 
 - **react-specialist** — React/Next.js frontends
 - **flutter-specialist** — Flutter mobile/desktop apps
@@ -155,57 +166,26 @@ Phase commands replace the manual copy-paste workflow. Each loads the correspond
 - **uiux-designer** — Enterprise UI/UX design
 - **ai-ux-designer** — AI interaction patterns
 
-### Testing & QA
-
-- **testing-specialist** — 3-tier strategy with real infrastructure
-- **documentation-validator** — Test code examples
-- **e2e-runner** — Playwright E2E test generation
-- **value-auditor** — Enterprise demo QA from buyer perspective
-
-### Release & Operations (`agents/management/`)
+### Release & Operations
 
 - **git-release-specialist** — Git workflows, CI, releases
-- **deployment-specialist** — SDK release, PyPI publishing, CI/CD management
+- **deployment-specialist** — Deployment, publishing, CI/CD management
 - **todo-manager** — Project task tracking
 - **gh-manager** — GitHub issue/project management
 
-### Standards (`agents/standards/`)
+### Standards & Frameworks
 
 - **care-expert** — CARE governance framework
+- **co-expert** — CO methodology (this workspace's base methodology)
 - **coc-expert** — COC development methodology
 - **eatp-expert** — EATP trust protocol
 
 ## Skills Navigation
 
-For SDK implementation patterns, see `.claude/skills/` — organized by framework (`01-core-sdk` through `05-kailash-mcp`), enterprise infrastructure (`15-enterprise-infrastructure`), and topic (`06-cheatsheets` through `28-coc-reference`).
+Skills in `.claude/skills/` are organized by domain:
 
-## Critical Execution Rules
-
-```python
-# ALWAYS: runtime.execute(workflow.build())
-# NEVER: workflow.execute(runtime)
-runtime = LocalRuntime()
-results, run_id = runtime.execute(workflow.build())
-
-# Async (Docker/FastAPI):
-runtime = AsyncLocalRuntime()
-results, run_id = await runtime.execute_workflow_async(workflow.build(), inputs={})
-
-# String-based nodes only
-workflow.add_node("NodeType", "node_id", {"param": "value"})
-
-# Return structure is always (results, run_id)
-```
-
-## Kailash Platform
-
-| Framework    | Purpose                                | Install                        |
-| ------------ | -------------------------------------- | ------------------------------ |
-| **Core SDK** | Workflow orchestration, 140+ nodes     | `pip install kailash`          |
-| **Trust**    | EATP protocol + trust-plane governance | `pip install kailash[trust]`   |
-| **DataFlow** | Zero-config database operations        | `pip install kailash-dataflow` |
-| **Nexus**    | Multi-channel deployment (API+CLI+MCP) | `pip install kailash-nexus`    |
-| **Kaizen**   | AI agent framework                     | `pip install kailash-kaizen`   |
-| **PACT**     | Organizational governance (D/T/R)      | `pip install kailash-pact`     |
-
-All frameworks are built ON Core SDK — they don't replace it.
+- `01-core-sdk` through `05-kailash-mcp` — Kailash SDK implementation patterns
+- `06-cheatsheets` through `14-code-templates` — Development references
+- `15-enterprise-infrastructure` — Infrastructure patterns
+- `19-flutter-patterns` through `25-ai-interaction-patterns` — Frontend & UX
+- `26-eatp-reference`, `27-care-reference`, `28-coc-reference`, `co-reference` — Framework references
