@@ -12,7 +12,7 @@
       "command": "npx",
       "args": ["-y", "@modelcontextprotocol/server-github"],
       "env": {
-        "GITHUB_TOKEN": "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"
+        "GITHUB_TOKEN": "${GITHUB_TOKEN}"
       }
     },
     "postgres": {
@@ -31,7 +31,7 @@
       "command": "npx",
       "args": ["-y", "@serpapi/mcp-server"],
       "env": {
-        "SERPAPI_API_KEY": "4bb09ddf8405b235174f3c15da60f67d0d8b97518f785b6edb4a46d2f3de9ed2"
+        "SERPAPI_API_KEY": "${SERPAPI_API_KEY}"
       }
     },
     "fetch": {

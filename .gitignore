@@ -66,3 +66,4 @@ secrets/
 **/scripts/data/
 **/scripts/outputs/
 **/scripts/*.log
+.mcp.json
