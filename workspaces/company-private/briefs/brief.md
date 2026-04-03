@@ -1,19 +1,21 @@
-# Private Company Analysis — MBC Group
+# Job Opportunity Brief — SDAIA
 
-**Company:** MBC Group (Middle East Broadcasting Center)
-**Type:** Private (not publicly traded)
-**Owner/Investor:** Saudi royal family; primary shareholder Waleed Al Ibrahim (historically); Saudi sovereign control following 2018 Ritz-Carlton settlement
-**Sector:** Media & Entertainment / Broadcasting
-**Country:** Saudi Arabia (HQ: Dubai, UAE; ownership/control: KSA)
-**Goal:** Full private company and ownership analysis
+**Organization:** SDAIA (Saudi Data and Artificial Intelligence Authority)
+**Type:** Saudi government authority
+**Country:** Saudi Arabia
+**Goal:** Assess realistic chances of joining SDAIA and expected salary range
 
 ## Focus Areas
-- Ownership structure and history (pre- and post-2018 Ritz-Carlton crackdown)
-- Business model and revenue streams (advertising, streaming, content production)
-- MBC's portfolio: channels, platforms (Shahid), production arms
-- Market position and competitive landscape in MENA media
-- Revenue estimates from public sources and industry reports
-- Comparable transaction valuation (M&A comps in media/broadcasting)
-- Strategic opportunities (Vision 2030, streaming wars, content IP)
-- Risk register (political, regulatory, competitive, financial)
-- Strategic thesis
+
+- **Ownership / Structure** — What SDAIA is, who it reports to, how it is organized
+- **Hiring** — Do they hire MBA finance graduates? What roles exist for someone with finance + AI/ML background?
+- **Realistic fit** — Honest assessment for a Saudi MBA (SMU, finance track, ML and AI courses)
+- **Salary** — What does SDAIA pay? Ranges by level.
+
+## Notes / Constraints
+
+- I am Saudi (citizen) — no Saudization barrier
+- MBA at Singapore Management University (SMU), finance track
+- Taking machine learning and AI courses alongside MBA
+- I want only two things: what is my realistic shot at joining, and what is the salary
+- Nothing else — no generic career advice, no alternatives list
