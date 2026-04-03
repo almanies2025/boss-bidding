@@ -1,0 +1,16 @@
+{
+  "enabledMcpjsonServers": [
+    "filesystem",
+    "git",
+    "github",
+    "postgres",
+    "sqlite",
+    "puppeteer",
+    "serpapi",
+    "fetch",
+    "memory",
+    "sequential-thinking",
+    "time",
+    "context7"
+  ]
+}
