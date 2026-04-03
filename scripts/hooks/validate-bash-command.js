@@ -178,6 +178,28 @@ function validateBashCommand(data) {
     }
   }
 
+  // WARN: pip install without version pin (dependency-management.md Rule 1)
+  const pipInstallMatch = command.match(/pip\s+install\s+(?!-r\s)(?!--upgrade\s)([a-zA-Z0-9_\-]+)(\s|$)/);
+  if (pipInstallMatch) {
+    const pkg = pipInstallMatch[1];
+    // Allow: pip install -e, pip install --upgrade, pip install -r
+    if (!pkg.startsWith("-")) {
+      return {
+        continue: true,
+        exitCode: 0,
+        message:
+          `REMINDER [dependency-management]: pip install ${pkg} without a version pin. ` +
+          `Add to pyproject.toml with a version specifier (e.g. "${pkg}>=x.y,<z") ` +
+          `instead of installing ad-hoc. See rules/dependency-management.md Rule 1.`,
+      };
+    }
+  }
+
+  // WARN: pip install without pip-audit follow-up when adding new packages
+  if (/pip\s+install\s+[^-]/.test(command) && !/pip.audit|safety/.test(command)) {
+    // Already warned above, skip duplicate
+  }
+
   // WARN: Git push - reminder for security review
   if (/git\s+push/.test(command)) {
     return {

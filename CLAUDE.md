@@ -1,4 +1,24 @@
-# Kailash COC Claude (Python)
+# Kailash COC Claude (Python)  
+**Project**: boss-bidding  
+**Repository**: [`terrene-foundation/boss-bidding`](https://github.com/terrene-foundation/boss-bidding)
+
+---
+
+## ✅ Workspace Connection Active
+
+**You are now connected to the boss-bidding workspace.**
+
+| Component | Location |
+|-----------|----------|
+| **Agents** | `.claude/agents/` — 30+ specialized domain experts |
+| **Skills** | `.claude/skills/` — 28 specialized capabilities |
+| **Rules** | `.claude/rules/` — 23 governance & security rules |
+| **Commands** | `.claude/commands/` — 20+ workspace commands |
+| **Hooks** | `scripts/hooks/` — 9 enforcement hooks |
+
+**Quick Start Commands**: `/analyze` `/todos` `/implement` `/redteam` `/codify` `/ws` `/wrapup`
+
+---
 
 This repository is the **COC (Cognitive Orchestration for Codegen) setup** for building with the Kailash SDK — providing agents, skills, rules, and hooks for Kailash SDK development. All projects using this setup inherit these capabilities through the `.claude/` directory.
 
@@ -87,6 +107,16 @@ Phase commands replace the manual copy-paste workflow. Each loads the correspond
 | Infrastructure SQL safety             | `rules/infrastructure-sql.md`   | Database and infrastructure files                                     |
 | PACT governance security              | `rules/pact-governance.md`      | PACT governance files                                                 |
 | Journal knowledge trail               | `rules/journal.md`              | Global                                                                |
+| Error handling & logging              | `rules/error-handling.md`       | Global — all Python code                                              |
+| API versioning & compatibility        | `rules/api-versioning.md`       | Public SDK APIs, Nexus endpoints, DataFlow models                     |
+| Performance & resource constraints    | `rules/performance-constraints.md` | Critical paths, API handlers, workflow nodes                       |
+| Config management & secrets rotation  | `rules/configuration-management.md` | All environments, `.env*`, deployment config                    |
+| Concurrency & thread safety           | `rules/concurrency-safety.md`   | Threads, async/await, shared state                                    |
+| Dependency management                 | `rules/dependency-management.md` | `pyproject.toml`, `requirements*.txt`, `package.json`               |
+| Monitoring, alerting & observability  | `rules/observability.md`        | Production services, autonomous agents, background tasks              |
+| Data validation & sanitization        | `rules/data-validation.md`      | All system boundaries — API inputs, file uploads, LLM outputs         |
+| API documentation standards           | `rules/api-documentation.md`    | Public Python APIs, Nexus endpoints, `.env.example`                  |
+| CI/CD pipeline standards              | `rules/ci-cd-pipeline.md`       | `.github/workflows/**`, CI config, deployment scripts                 |
 
 **Note**: Rules with path scoping are loaded only when editing matching files. Global rules load every session.
 

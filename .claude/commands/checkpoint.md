@@ -1,5 +1,13 @@
 # /checkpoint - Learning Checkpoint Command
 
+**Project Context**: [boss-bidding](https://github.com/terrene-foundation/boss-bidding) — Kailash COC Claude (Python) setup with 30 agents, 28 skills, and 9 enforcement hooks for institutionally-aware AI code generation.
+
+**Related Files**: 
+- Main: [CLAUDE.md](../../../CLAUDE.md)
+- Skills: [.claude/skills/](../)
+- Agents: [.claude/agents/](../agents/)
+- Rules: [.claude/rules/](../rules/)
+
 ## Purpose
 
 Save and restore learning state checkpoints for the continuous learning system.

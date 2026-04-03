@@ -35,6 +35,11 @@
             "type": "command",
             "command": "node \"$CLAUDE_PROJECT_DIR/scripts/hooks/auto-format.js\"",
             "timeout": 30
+          },
+          {
+            "type": "command",
+            "command": "node \"$CLAUDE_PROJECT_DIR/scripts/hooks/validate-new-rules.js\"",
+            "timeout": 10
           }
         ]
       }
