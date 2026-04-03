@@ -12,7 +12,7 @@
       "command": "npx",
       "args": ["-y", "@modelcontextprotocol/server-github"],
       "env": {
-        "GITHUB_TOKEN": "${GITHUB_TOKEN}"
+        "GITHUB_TOKEN": "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"
       }
     },
     "postgres": {
